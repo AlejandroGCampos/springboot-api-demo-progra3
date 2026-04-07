@@ -4,6 +4,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import com.ejemplo.demo.api.dto.SaludoResponse;
+import com.ejemplo.demo.domain.service.SaludoService;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Map;
 
@@ -19,33 +22,21 @@ public class SaludoController {
         ));
     }
 
-    /*
-    ===========================================
-    PASO 2: DESCOMENTA este bloque y prueba GET
-    ===========================================
 
-    1) Descomenta imports:
-       - com.ejemplo.demo.api.dto.SaludoResponse
-       - com.ejemplo.demo.domain.service.SaludoService
-       - org.springframework.web.bind.annotation.RequestParam
-
-    2) Descomenta el campo y constructor:
-
+    
     private final SaludoService saludoService;
 
     public SaludoController(SaludoService saludoService) {
         this.saludoService = saludoService;
     }
 
-    3) Descomenta este endpoint:
-
+    
     @GetMapping("/saludos")
     public ResponseEntity<SaludoResponse> saludar(
             @RequestParam(defaultValue = "Mundo") String nombre
     ) {
         return ResponseEntity.ok(saludoService.crearSaludo(nombre));
     }
-    */
 
     /*
     ============================================
