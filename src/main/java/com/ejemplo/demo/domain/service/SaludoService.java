@@ -7,7 +7,6 @@ import java.time.Instant;
 
 @Service
 public class SaludoService {
-
     public SaludoResponse crearSaludo(String nombre) {
         String nombreNormalizado = normalizarNombre(nombre);
         String mensaje = "Hola, %s. Bienvenido a Spring Boot 3!".formatted(nombreNormalizado);
@@ -15,7 +14,6 @@ public class SaludoService {
     }
 
     String normalizarNombre(String nombre) {
-
         if (nombre == null || nombre.trim().isEmpty()) {
             return "Estudiante Mundo";
         }
@@ -27,9 +25,15 @@ public class SaludoService {
         }
 
         nombre = nombre.toLowerCase();
+        String[] partes = nombre.split("\\s+");
+        StringBuilder nombreFormateado = new StringBuilder();
 
-        nombre = nombre.substring(0, 1).toUpperCase() + nombre.substring(1);
-
-        return "Estudiante " + nombre;
+        for (String parte : partes) {
+            if (!parte.isEmpty()) {
+                String palabra = parte.substring(0, 1).toUpperCase() + parte.substring(1);
+                nombreFormateado.append(palabra).append(" ");
+            }
+        }
+        return "Estudiante " + nombreFormateado.toString().trim();
     }
 }
