@@ -1,15 +1,12 @@
 package com.ejemplo.demo.api.controller;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
 import com.ejemplo.demo.api.dto.SaludoResponse;
 import com.ejemplo.demo.api.dto.SaludoRequest;
 import com.ejemplo.demo.domain.service.SaludoService;
-import jakarta.validation.Valid;
-import java.util.Map;
-import java.util.HashMap; 
 import com.ejemplo.demo.api.contract.WorkshopApi;
-import com.ejemplo.demo.api.dto.ErrorResponse;
+import com.ejemplo.demo.api.dto.GetWorkshopHealth200Response;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class SaludoController implements WorkshopApi{
@@ -21,10 +18,10 @@ public class SaludoController implements WorkshopApi{
     }
 
     @Override
-    public ResponseEntity<Object> getWorkshopHealth() {
-        Map<String, Object> response = new HashMap<>();
-        response.put("status", "ok");
-        response.put("message", "Workshop Spring Boot activo");
+    public ResponseEntity<GetWorkshopHealth200Response> getWorkshopHealth() {
+        GetWorkshopHealth200Response response = new GetWorkshopHealth200Response();
+        response.setEstado("ok");
+        response.setMensaje("Workshop Spring Boot activo");
         return ResponseEntity.ok(response);
     }
     
@@ -35,6 +32,6 @@ public class SaludoController implements WorkshopApi{
 
     @Override
     public ResponseEntity<SaludoResponse> saludarPorPost(SaludoRequest saludoRequest) {
-        return ResponseEntity.ok(saludoService.crearSaludo(saludoRequest.nombre())); 
+    	return ResponseEntity.ok(saludoService.crearSaludo(saludoRequest.getNombre()));
     }
 }
